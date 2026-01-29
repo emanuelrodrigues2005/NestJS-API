@@ -1,83 +1,473 @@
-# NestJS-API
+<div align="center">
 
-A professional reference implementation for building scalable RESTful APIs with NestJS. This project demonstrates high-level architecture patterns, type-safe database persistence with Prisma ORM, and advanced OpenAPI (Swagger) documentation using custom decorators.
+# 🚀 NestJS REST API
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" />
 
-## Description
+### A professional REST API built with NestJS, Prisma ORM & Swagger
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[![NestJS](https://img.shields.io/badge/NestJS-v11.0-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-v6.19-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://prisma.io/)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-v5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-## Project setup
+---
 
-```bash
-$ npm install
+**🌐 Choose your language | Escolha seu idioma:**
+
+[🇺🇸 English](#-english) • [🇧🇷 Português](#-português)
+
+---
+
+</div>
+
+# 🇺🇸 English
+
+## 📋 Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Technologies](#-technologies)
+- [Architecture](#-architecture)
+- [Features](#-features)
+- [Getting Started](#-getting-started)
+- [API Endpoints](#-api-endpoints)
+- [Project Structure](#-project-structure)
+- [Swagger Documentation](#-swagger-documentation)
+
+## 📖 About the Project
+
+This project is a **professional reference implementation** for building scalable RESTful APIs using the **NestJS** framework. It demonstrates modern backend development practices including:
+
+- 🏗️ **Modular Architecture** - Clean separation of concerns with NestJS modules
+- 🗃️ **Type-safe Database Access** - Using Prisma ORM with PostgreSQL
+- 📚 **API Documentation** - Comprehensive Swagger/OpenAPI documentation
+- ✅ **Data Validation** - Request validation using class-validator
+- 🎯 **Custom Decorators** - Reusable Swagger decorators for cleaner code
+
+## 🛠️ Technologies
+
+| Technology | Description |
+|------------|-------------|
+| **NestJS v11** | Progressive Node.js framework for building efficient server-side applications |
+| **Prisma v6** | Next-generation ORM for type-safe database access |
+| **PostgreSQL** | Robust and reliable relational database |
+| **Swagger/OpenAPI** | Interactive API documentation and testing |
+| **TypeScript** | Strongly typed JavaScript for better development experience |
+| **class-validator** | Decorator-based validation for DTOs |
+| **class-transformer** | Object transformation and serialization |
+
+## 🏛️ Architecture
+
+The project follows NestJS's recommended modular architecture:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Client Request                        │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ValidationPipe (Global)                    │
+│              Validates DTOs using class-validator            │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                        Controller                            │
+│         Handles HTTP requests and Swagger decorators         │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         Service                              │
+│              Business logic and data processing              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     Prisma Service                           │
+│              Type-safe database operations                   │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    PostgreSQL Database                       │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## Compile and run the project
+## ✨ Features
 
-```bash
-# development
-$ npm run start
+### User Management (CRUD)
+- ✅ Create new users with validation
+- ✅ List all users
+- ✅ Find user by ID
+- ✅ Find user by email
+- ✅ Update user data
+- ✅ Delete user
 
-# watch mode
-$ npm run start:dev
+### API Documentation
+- ✅ Interactive Swagger UI
+- ✅ Custom reusable Swagger decorators
+- ✅ Detailed request/response schemas
+- ✅ Example values for all fields
 
-# production mode
-$ npm run start:prod
+### Data Validation
+- ✅ DTO-based validation
+- ✅ Automatic error messages
+- ✅ Type coercion with ParseIntPipe
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- PostgreSQL database
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/emanuelrodrigues2005/NestJS-API.git
+   cd NestJS-API
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/database_name?schema=public"
+   ```
+
+4. **Run database migrations**
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. **Start the application**
+   ```bash
+   # Development mode
+   npm run start:dev
+
+   # Production mode
+   npm run start:prod
+   ```
+
+## 📡 API Endpoints
+
+### User Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/user` | Create a new user |
+| `GET` | `/user` | List all users |
+| `GET` | `/user/:id` | Find user by ID |
+| `GET` | `/user/email/:email` | Find user by email |
+| `PUT` | `/user/:id` | Update user |
+| `DELETE` | `/user/:id` | Delete user |
+
+## 📁 Project Structure
+
+```
+src/
+├── main.ts                    # Application entry point & Swagger setup
+├── app.module.ts              # Root application module
+├── app.controller.ts          # Root controller
+├── app.service.ts             # Root service
+│
+├── prisma/                    # Prisma module
+│   ├── prisma.module.ts       # Prisma module definition
+│   └── prisma.service.ts      # Database connection service
+│
+└── user/                      # User feature module
+    ├── user.module.ts         # User module definition
+    ├── user.controller.ts     # HTTP request handlers
+    ├── user.service.ts        # Business logic
+    ├── user.swagger.ts        # Custom Swagger decorators
+    └── dto/
+        ├── create-user.dto.ts # Create user validation
+        └── update-user.dto.ts # Update user validation
+
+prisma/
+├── schema.prisma              # Database schema definition
+└── migrations/                # Database migrations
 ```
 
-## Run tests
+### Custom Swagger Decorators
 
-```bash
-# unit tests
-$ npm run test
+This project uses **custom decorators** to keep controllers clean and reusable:
 
-# e2e tests
-$ npm run test:e2e
+```typescript
+// user.swagger.ts
+export function ApiCreateUser() {
+    return applyDecorators(
+        ApiOperation({ summary: 'Create a user' }),
+        ApiResponse({ status: 201, description: 'User created successfully.' }),
+        ApiResponse({ status: 400, description: 'Invalid input data.' }),
+    );
+}
 
-# test coverage
-$ npm run test:cov
+// Usage in controller
+@Post()
+@ApiCreateUser()
+create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
+}
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+# 🇧🇷 Português
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 📋 Índice
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias](#-tecnologias)
+- [Arquitetura](#-arquitetura)
+- [Funcionalidades](#-funcionalidades)
+- [Como Executar](#-como-executar)
+- [Endpoints da API](#-endpoints-da-api)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Documentação Swagger](#-documentação-swagger)
+
+## 📖 Sobre o Projeto
+
+Este projeto é uma **implementação de referência profissional** para construção de APIs RESTful escaláveis usando o framework **NestJS**. Demonstra práticas modernas de desenvolvimento backend incluindo:
+
+- 🏗️ **Arquitetura Modular** - Separação limpa de responsabilidades com módulos NestJS
+- 🗃️ **Acesso Type-safe ao Banco** - Usando Prisma ORM com PostgreSQL
+- 📚 **Documentação da API** - Documentação completa com Swagger/OpenAPI
+- ✅ **Validação de Dados** - Validação de requisições usando class-validator
+- 🎯 **Decorators Personalizados** - Decorators Swagger reutilizáveis para código mais limpo
+
+## 🛠️ Tecnologias
+
+| Tecnologia | Descrição |
+|------------|-----------|
+| **NestJS v11** | Framework Node.js progressivo para construção de aplicações server-side eficientes |
+| **Prisma v6** | ORM de próxima geração para acesso type-safe ao banco de dados |
+| **PostgreSQL** | Banco de dados relacional robusto e confiável |
+| **Swagger/OpenAPI** | Documentação interativa e testes da API |
+| **TypeScript** | JavaScript fortemente tipado para melhor experiência de desenvolvimento |
+| **class-validator** | Validação baseada em decorators para DTOs |
+| **class-transformer** | Transformação e serialização de objetos |
+
+## 🏛️ Arquitetura
+
+O projeto segue a arquitetura modular recomendada pelo NestJS:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Requisição do Cliente                    │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ValidationPipe (Global)                    │
+│              Valida DTOs usando class-validator              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                        Controller                            │
+│        Lida com requisições HTTP e decorators Swagger        │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         Service                              │
+│             Lógica de negócio e processamento                │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     Prisma Service                           │
+│              Operações type-safe no banco                    │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   Banco de Dados PostgreSQL                  │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## ✨ Funcionalidades
 
-## Resources
+### Gerenciamento de Usuários (CRUD)
+- ✅ Criar novos usuários com validação
+- ✅ Listar todos os usuários
+- ✅ Buscar usuário por ID
+- ✅ Buscar usuário por email
+- ✅ Atualizar dados do usuário
+- ✅ Deletar usuário
 
-Check out a few resources that may come in handy when working with NestJS:
+### Documentação da API
+- ✅ Interface interativa Swagger
+- ✅ Decorators Swagger customizados e reutilizáveis
+- ✅ Schemas detalhados de request/response
+- ✅ Valores de exemplo para todos os campos
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Validação de Dados
+- ✅ Validação baseada em DTOs
+- ✅ Mensagens de erro automáticas
+- ✅ Coerção de tipos com ParseIntPipe
 
-## Support
+## 🚀 Como Executar
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Pré-requisitos
 
-## Stay in touch
+- Node.js 18+
+- npm ou yarn
+- Banco de dados PostgreSQL
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Instalação
 
-## License
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/emanuelrodrigues2005/NestJS-API.git
+   cd NestJS-API
+   ```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+2. **Instale as dependências**
+   ```bash
+   npm install
+   ```
+
+3. **Configure as variáveis de ambiente**
+   
+   Crie um arquivo `.env` no diretório raiz:
+   ```env
+   DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
+   PORT=3000
+   ```
+
+4. **Execute as migrations do banco**
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. **Inicie a aplicação**
+   ```bash
+   # Modo desenvolvimento
+   npm run start:dev
+
+   # Modo produção
+   npm run start:prod
+   ```
+
+6. **Acesse a API**
+   - 🌐 API: `http://localhost:3000`
+   - 📚 Swagger: `http://localhost:3000/api`
+
+## 📡 Endpoints da API
+
+### Endpoints de Usuário
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `POST` | `/user` | Criar um novo usuário |
+| `GET` | `/user` | Listar todos os usuários |
+| `GET` | `/user/:id` | Buscar usuário por ID |
+| `GET` | `/user/email/:email` | Buscar usuário por email |
+| `PUT` | `/user/:id` | Atualizar usuário |
+| `DELETE` | `/user/:id` | Deletar usuário |
+
+### Exemplos de Request/Response
+
+#### Criar Usuário
+```json
+// POST /user
+// Corpo da Requisição
+{
+  "email": "joao@exemplo.com",
+  "name": "João Silva"
+}
+
+// Resposta 201
+{
+  "id": 1,
+  "email": "joao@exemplo.com",
+  "name": "João Silva",
+  "createdAt": "2026-01-28T00:00:00.000Z",
+  "updatedAt": "2026-01-28T00:00:00.000Z"
+}
+```
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── main.ts                    # Ponto de entrada & configuração Swagger
+├── app.module.ts              # Módulo raiz da aplicação
+├── app.controller.ts          # Controller raiz
+├── app.service.ts             # Service raiz
+│
+├── prisma/                    # Módulo Prisma
+│   ├── prisma.module.ts       # Definição do módulo Prisma
+│   └── prisma.service.ts      # Serviço de conexão com banco
+│
+└── user/                      # Módulo de usuário
+    ├── user.module.ts         # Definição do módulo de usuário
+    ├── user.controller.ts     # Handlers de requisições HTTP
+    ├── user.service.ts        # Lógica de negócio
+    ├── user.swagger.ts        # Decorators Swagger customizados
+    └── dto/
+        ├── create-user.dto.ts # Validação para criação
+        └── update-user.dto.ts # Validação para atualização
+
+prisma/
+├── schema.prisma              # Definição do schema do banco
+└── migrations/                # Migrations do banco de dados
+```
+
+## 📚 Documentação Swagger
+
+Acesse a documentação interativa em `http://localhost:3000/api`
+
+### Decorators Swagger Customizados
+
+Este projeto usa **decorators customizados** para manter os controllers limpos e reutilizáveis:
+
+```typescript
+// user.swagger.ts
+export function ApiCreateUser() {
+    return applyDecorators(
+        ApiOperation({ summary: 'Criar um usuário' }),
+        ApiResponse({ status: 201, description: 'Usuário criado com sucesso.' }),
+        ApiResponse({ status: 400, description: 'Dados de entrada inválidos.' }),
+    );
+}
+
+// Uso no controller
+@Post()
+@ApiCreateUser()
+create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
+}
+```
+
+---
+
+<div align="center">
+
+## 📝 License | Licença
+
+This project is [MIT](LICENSE) licensed.
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+---
+
+**Made with ❤️ by Emanuel Rodrigues**
+
+*Desenvolvido com ❤️ por Emanuel Rodrigues*
+
+[![GitHub](https://img.shields.io/badge/GitHub-emanuelrodrigues2005-181717?style=for-the-badge&logo=github)](https://github.com/emanuelrodrigues2005)
+
+</div>
