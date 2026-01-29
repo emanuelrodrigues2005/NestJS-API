@@ -343,8 +343,7 @@ O projeto segue a arquitetura modular recomendada pelo NestJS:
    
    Crie um arquivo `.env` no diretório raiz:
    ```env
-   DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
-   PORT=3000
+   DATABASE_URL="postgresql://USUARIO:SENHA@HOST:PORTA/nome_do_banco?schema=public"
    ```
 
 4. **Execute as migrations do banco**
@@ -361,10 +360,6 @@ O projeto segue a arquitetura modular recomendada pelo NestJS:
    npm run start:prod
    ```
 
-6. **Acesse a API**
-   - 🌐 API: `http://localhost:3000`
-   - 📚 Swagger: `http://localhost:3000/api`
-
 ## 📡 Endpoints da API
 
 ### Endpoints de Usuário
@@ -377,27 +372,6 @@ O projeto segue a arquitetura modular recomendada pelo NestJS:
 | `GET` | `/user/email/:email` | Buscar usuário por email |
 | `PUT` | `/user/:id` | Atualizar usuário |
 | `DELETE` | `/user/:id` | Deletar usuário |
-
-### Exemplos de Request/Response
-
-#### Criar Usuário
-```json
-// POST /user
-// Corpo da Requisição
-{
-  "email": "joao@exemplo.com",
-  "name": "João Silva"
-}
-
-// Resposta 201
-{
-  "id": 1,
-  "email": "joao@exemplo.com",
-  "name": "João Silva",
-  "createdAt": "2026-01-28T00:00:00.000Z",
-  "updatedAt": "2026-01-28T00:00:00.000Z"
-}
-```
 
 ## 📁 Estrutura do Projeto
 
@@ -425,10 +399,6 @@ prisma/
 ├── schema.prisma              # Definição do schema do banco
 └── migrations/                # Migrations do banco de dados
 ```
-
-## 📚 Documentação Swagger
-
-Acesse a documentação interativa em `http://localhost:3000/api`
 
 ### Decorators Swagger Customizados
 
@@ -464,9 +434,9 @@ Este projeto está sob a licença [MIT](LICENSE).
 
 ---
 
-**Made with ❤️ by Emanuel Rodrigues**
+**Made by Emanuel Rodrigues**
 
-*Desenvolvido com ❤️ por Emanuel Rodrigues*
+*Desenvolvido por Emanuel Rodrigues*
 
 [![GitHub](https://img.shields.io/badge/GitHub-emanuelrodrigues2005-181717?style=for-the-badge&logo=github)](https://github.com/emanuelrodrigues2005)
 
