@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service.js';
+import { CreateUserDto } from './dto/create-user.dto.js';
+import { UpdateUserDto } from './dto/update-user.dto.js';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ApiCreateUser } from './user.swagger';
+import { ApiCreateUser, ApiUpdateUser } from './user.swagger.js';
 
 @ApiTags('user')
 @Controller('user')
@@ -18,7 +27,10 @@ export class UserController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todos os usuários' })
-  @ApiResponse({ status: 200, description: 'Lista de usuários retornada com sucesso.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de usuários retornada com sucesso.',
+  })
   findAll() {
     return this.userService.findAll();
   }
@@ -38,7 +50,11 @@ export class UserController {
 
   @Get('email/:email')
   @ApiOperation({ summary: 'Buscar um usuário pelo e-mail' })
-  @ApiParam({ name: 'email', description: 'Endereço de e-mail do usuário', example: 'exemplo@email.com' })
+  @ApiParam({
+    name: 'email',
+    description: 'Endereço de e-mail do usuário',
+    example: 'exemplo@email.com',
+  })
   @ApiResponse({ status: 200, description: 'Usuário encontrado.' })
   @ApiResponse({ status: 404, description: 'Usuário não encontrado.' })
   findByEmail(@Param('email') email: string) {
@@ -46,10 +62,7 @@ export class UserController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Atualizar dados de um usuário' })
-  @ApiParam({ name: 'id', description: 'ID do usuário a ser editado' })
-  @ApiResponse({ status: 200, description: 'Usuário atualizado com sucesso.' })
-  @ApiResponse({ status: 404, description: 'Usuário não encontrado.' })
+  @ApiUpdateUser()
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,

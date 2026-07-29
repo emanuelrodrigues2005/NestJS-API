@@ -7,7 +7,7 @@
 ### A professional REST API built with NestJS, Prisma ORM & Swagger
 
 [![NestJS](https://img.shields.io/badge/NestJS-v11.0-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-v6.19-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://prisma.io/)
+[![Prisma](https://img.shields.io/badge/Prisma-v7.9-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://prisma.io/)
 [![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
@@ -50,12 +50,13 @@ This project is a **professional reference implementation** for building scalabl
 | Technology | Description |
 |------------|-------------|
 | **NestJS v11** | Progressive Node.js framework for building efficient server-side applications |
-| **Prisma v6** | Next-generation ORM for type-safe database access |
+| **Prisma v7** | Next-generation ORM for type-safe database access (with PostgreSQL adapter) |
 | **PostgreSQL** | Robust and reliable relational database |
 | **Swagger/OpenAPI** | Interactive API documentation and testing |
 | **TypeScript** | Strongly typed JavaScript for better development experience |
 | **class-validator** | Decorator-based validation for DTOs |
 | **class-transformer** | Object transformation and serialization |
+| **ESM** | Native ECMAScript Modules throughout the project |
 
 ## 🏛️ Architecture
 
@@ -121,8 +122,8 @@ The project follows NestJS's recommended modular architecture:
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- Node.js 20.19+ (Node.js 22 LTS recommended)
+- npm
 - PostgreSQL database
 
 ### Installation
@@ -145,8 +146,9 @@ The project follows NestJS's recommended modular architecture:
    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/database_name?schema=public"
    ```
 
-4. **Run database migrations**
+4. **Generate Prisma Client & Run database migrations**
    ```bash
+   npx prisma generate
    npx prisma migrate dev
    ```
 
@@ -196,7 +198,11 @@ src/
 
 prisma/
 ├── schema.prisma              # Database schema definition
+├── prisma.config.ts           # Prisma ORM configuration
 └── migrations/                # Database migrations
+
+src/generated/
+└── prisma/                    # Generated Prisma Client (auto-generated)
 ```
 
 ### Custom Swagger Decorators
@@ -251,12 +257,13 @@ Este projeto é uma **implementação de referência profissional** para constru
 | Tecnologia | Descrição |
 |------------|-----------|
 | **NestJS v11** | Framework Node.js progressivo para construção de aplicações server-side eficientes |
-| **Prisma v6** | ORM de próxima geração para acesso type-safe ao banco de dados |
+| **Prisma v7** | ORM de próxima geração para acesso type-safe ao banco (com adapter PostgreSQL) |
 | **PostgreSQL** | Banco de dados relacional robusto e confiável |
 | **Swagger/OpenAPI** | Documentação interativa e testes da API |
 | **TypeScript** | JavaScript fortemente tipado para melhor experiência de desenvolvimento |
 | **class-validator** | Validação baseada em decorators para DTOs |
 | **class-transformer** | Transformação e serialização de objetos |
+| **ESM** | Módulos ECMAScript nativos em todo o projeto |
 
 ## 🏛️ Arquitetura
 
@@ -322,8 +329,8 @@ O projeto segue a arquitetura modular recomendada pelo NestJS:
 
 ### Pré-requisitos
 
-- Node.js 18+
-- npm ou yarn
+- Node.js 20.19+ (Node.js 22 LTS recomendado)
+- npm
 - Banco de dados PostgreSQL
 
 ### Instalação
@@ -346,8 +353,9 @@ O projeto segue a arquitetura modular recomendada pelo NestJS:
    DATABASE_URL="postgresql://USUARIO:SENHA@HOST:PORTA/nome_do_banco?schema=public"
    ```
 
-4. **Execute as migrations do banco**
+4. **Gere o Prisma Client e execute as migrations**
    ```bash
+   npx prisma generate
    npx prisma migrate dev
    ```
 
@@ -397,7 +405,11 @@ src/
 
 prisma/
 ├── schema.prisma              # Definição do schema do banco
+├── prisma.config.ts           # Configuração do Prisma ORM
 └── migrations/                # Migrations do banco de dados
+
+src/generated/
+└── prisma/                    # Prisma Client gerado (auto-gerado)
 ```
 
 ### Decorators Swagger Customizados
