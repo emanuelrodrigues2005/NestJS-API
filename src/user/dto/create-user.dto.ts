@@ -24,7 +24,7 @@ export class CreateUserDto {
   @IsEmail({}, { message: 'Informe um e-mail válido.' })
   @IsNotEmpty({ message: 'O e-mail é obrigatório.' })
   @Transform(({ value }) => normalizeEmail(value))
-  email: string;
+  email!: string;
 
   @ApiProperty({ example: 'João Silva', description: 'Nome do usuário' })
   @IsString({ message: 'O nome deve ser uma string.' })
@@ -32,5 +32,5 @@ export class CreateUserDto {
   @MinLength(2, { message: 'O nome deve ter no mínimo 2 caracteres.' })
   @MaxLength(100, { message: 'O nome deve ter no máximo 100 caracteres.' })
   @Transform(({ value }) => trimString(value))
-  name: string;
+  name!: string;
 }
